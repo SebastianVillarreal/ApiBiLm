@@ -71,6 +71,47 @@ namespace marcatel_api.Services
 
         }
 
+        public List<VentasArticuloModel> GetDimVentasArticulo(int sucursal, string fecha_inicial, string fecha_final)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+            
+            //filtros.FechaInicial = (filtros.FechaInicial == "") ? "0000-00-00" : filtros.FechaInicial;
+            //filtros.FechaFinal = (filtros.FechaFinal == "") ? "0000-00-00" : filtros.FechaFinal;
+            var lista = new List<VentasArticuloModel>();
+            parametros.Add(new SqlParameter { ParameterName = "@pIdSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal});
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = fecha_inicial });
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = fecha_final });
+            try
+            {
+                DataSet ds = dac.Fill("GetDimVentasArticulo", parametros);
+                if(ds.Tables.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new VentasArticuloModel
+                        {
+                            Articulo = dr["Articulo"].ToString(),
+                            Descripcion = dr["Descripcion"].ToString(),
+                            Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
+                            Total = decimal.Parse(dr["Total"].ToString()),
+                            ClaveProveedor = dr["ClaveProveedor"].ToString(),
+                            IdSucursal = int.Parse(dr["IdSucursal"].ToString()),
+                            Fecha = dr["Fecha"].ToString(),
+                            ArtnCostoUnitario = decimal.Parse(dr["ARTN_CostoUnitario"].ToString()),
+                            ArtnUltimoPrecio = decimal.Parse(dr["ARTN_UltimoPrecio"].ToString()),
+
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return lista;
+        }
+
 
         
     }

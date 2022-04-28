@@ -57,5 +57,32 @@ namespace marcatel_api.Controllers
 
         }
 
+        [HttpGet("GetDimVentasArticulo")]
+        public JsonResult GetDimVentasArticulo(int sucursal, string f_inicial, string f_final)
+        {
+            var objectResponse = Helper.GetStructResponse();
+            try
+            {
+                var articulo = _adminService.GetDimVentasArticulo(sucursal, f_inicial, f_final);
+                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.success = true;
+                objectResponse.message = "data cargado con exito";
+
+                objectResponse.response = new
+                {
+                    data = articulo
+                };
+            }
+            catch (System.Exception ex)
+            {
+                Console.Write(ex.Message);
+                throw;
+            }
+
+
+            return new JsonResult(objectResponse);
+
+        }
+
     }
 }
