@@ -84,5 +84,32 @@ namespace marcatel_api.Controllers
 
         }
 
+        [HttpGet("GetTotalesSucursal")]
+        public JsonResult GetTotalesSucursal( string f_inicial, string f_final)
+        {
+            var objectResponse = Helper.GetStructResponse();
+            try
+            {
+                var articulo = _adminService.GetTotalVentasCantidad( f_inicial, f_final);
+                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.success = true;
+                objectResponse.message = "data cargado con exito";
+
+                objectResponse.response = new
+                {
+                    data = articulo
+                };
+            }
+            catch (System.Exception ex)
+            {
+                Console.Write(ex.Message);
+                throw;
+            }
+
+
+            return new JsonResult(objectResponse);
+
+        }
+
     }
 }
