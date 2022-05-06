@@ -112,6 +112,43 @@ namespace marcatel_api.Services
             return lista;
         }
 
+        public List<TotalesModel> GetTotalVentasCantidad( string fecha_inicial, string fecha_final)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+            
+            //filtros.FechaInicial = (filtros.FechaInicial == "") ? "0000-00-00" : filtros.FechaInicial;
+            //filtros.FechaFinal = (filtros.FechaFinal == "") ? "0000-00-00" : filtros.FechaFinal;
+            var lista = new List<TotalesModel>();
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = fecha_inicial });
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = fecha_final });
+            try
+            {
+                DataSet ds = dac.Fill("GetTotalVentasCantidadSucursalFechas", parametros);
+                if(ds.Tables.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new TotalesModel
+                        {
+                            IdSucursal = int.Parse(dr["IdSucursal"].ToString()),
+                            TotalDinero = decimal.Parse(dr["TotalDinero"].ToString()),
+                            TotalUnidades = decimal.Parse(dr["TotalUnidades"].ToString()),
+                            
+
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return lista;
+        }
+
+        
+
 
         
     }
