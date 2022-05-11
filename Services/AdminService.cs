@@ -134,6 +134,7 @@ namespace marcatel_api.Services
                             IdSucursal = int.Parse(dr["IdSucursal"].ToString()),
                             TotalDinero = decimal.Parse(dr["TotalDinero"].ToString()),
                             TotalUnidades = decimal.Parse(dr["TotalUnidades"].ToString()),
+                            TotalCosto = decimal.Parse(dr["TotalCosto"].ToString())
                             
 
                         });
