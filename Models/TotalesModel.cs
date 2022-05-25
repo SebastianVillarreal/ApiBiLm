@@ -6,6 +6,7 @@ namespace marcatel_api.Models
         public decimal TotalUnidades {get; set;}
         public decimal TotalDinero {get; set;}
         public decimal TotalCosto {get; set;}
+        public decimal Devolucion {get; set;}
         
 
         
