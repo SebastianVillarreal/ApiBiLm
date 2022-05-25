@@ -135,7 +135,9 @@ namespace marcatel_api.Services
                             TotalDinero = decimal.Parse(dr["TotalDinero"].ToString()),
                             TotalUnidades = decimal.Parse(dr["TotalUnidades"].ToString()),
                             TotalCosto = decimal.Parse(dr["TotalCosto"].ToString()),
-                            Devolucion = decimal.Parse(dr["devolucion"].ToString()),
+                            Devolucion = decimal.Parse(dr["devolucionCantidad"].ToString()),
+                            DevolucionCosto = decimal.Parse(dr["DevCosto"].ToString()),
+                            DevolucionPrecio = decimal.Parse(dr["DevVenta"].ToString()),
                             
 
                         });
