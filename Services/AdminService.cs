@@ -211,10 +211,11 @@ namespace marcatel_api.Services
                     {
                         lista.Add(new VentasFamiliaModel
                         {
-                            Nombre = dr["Nombre"].ToString(),
+                            Nombre = dr["NombreDepto"].ToString(),
                             Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
                             Venta = decimal.Parse(dr["Venta"].ToString()),
                             Costo = decimal.Parse(dr["Costo"].ToString()),
+                            ClaveDepartamento = dr["ClaveDepto"].ToString()
                             
 
                         });
