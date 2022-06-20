@@ -177,6 +177,10 @@ namespace marcatel_api.Services
                             Costo = decimal.Parse(dr["Costo"].ToString()),
                             Departamento = dr["NombreDepto"].ToString(),
                             ClaveDepartamento = dr["ClaveDepto"].ToString(),
+                            CostoDev = decimal.Parse(dr["CostoDev"].ToString()),
+                            CantidadDev = decimal.Parse(dr["CantidadDev"].ToString()),
+                            VentaDev = decimal.Parse(dr["VentaDev"].ToString())
+                            
                             
 
                         });

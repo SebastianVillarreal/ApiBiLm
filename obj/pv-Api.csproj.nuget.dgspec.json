@@ -1,26 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sebastianvillarreal/Documents/GitHub/ApiBiLm/pv-Api.csproj": {}
+    "C:\\Users\\User\\Documents\\GitHub\\ApiBiLm\\pv-Api.csproj": {}
   },
   "projects": {
-    "/Users/sebastianvillarreal/Documents/GitHub/ApiBiLm/pv-Api.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\ApiBiLm\\pv-Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sebastianvillarreal/Documents/GitHub/ApiBiLm/pv-Api.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\ApiBiLm\\pv-Api.csproj",
         "projectName": "pv-Api",
-        "projectPath": "/Users/sebastianvillarreal/Documents/GitHub/ApiBiLm/pv-Api.csproj",
-        "packagesPath": "/Users/sebastianvillarreal/.nuget/packages/",
-        "outputPath": "/Users/sebastianvillarreal/Documents/GitHub/ApiBiLm/obj/",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\ApiBiLm\\pv-Api.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\ApiBiLm\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/sebastianvillarreal/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3-index/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -91,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.404/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

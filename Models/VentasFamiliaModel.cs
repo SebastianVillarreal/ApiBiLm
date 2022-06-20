@@ -8,5 +8,8 @@ namespace marcatel_api.Models
         public decimal Costo {get; set;}
         public string Departamento {get; set;}
         public string ClaveDepartamento {get; set;}
+        public decimal CantidadDev {get; set;}
+        public decimal CostoDev {get; set;}
+        public decimal VentaDev {get; set;}
     }
 }
