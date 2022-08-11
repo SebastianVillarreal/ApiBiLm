@@ -248,18 +248,18 @@ namespace marcatel_api.Services
             parametros.Add(new SqlParameter { ParameterName = "@pIdSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal });
             try
             {
-                DataSet ds = dac.Fill("GetVentasDepartamentoSucursal", parametros);
+                DataSet ds = dac.Fill("GetVentasProveedorSucursal", parametros);
                 if(ds.Tables.Count > 0)
                 {
                     foreach(DataRow dr in ds.Tables[0].Rows)
                     {
                         lista.Add(new VentasFamiliaModel
                         {
-                            Nombre = dr["NombreDepto"].ToString(),
+                            Nombre = dr["Nombre"].ToString(),
                             Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
-                            Venta = decimal.Parse(dr["Venta"].ToString()),
-                            Costo = decimal.Parse(dr["Costo"].ToString()),
-                            ClaveDepartamento = dr["ClaveDepto"].ToString()
+                            Venta = decimal.Parse(dr["total"].ToString()),
+                            //Costo = decimal.Parse(dr["Costo"].ToString()),
+                            ClaveProveedor = dr["ClaveProveedor"].ToString()
                             
 
                         });

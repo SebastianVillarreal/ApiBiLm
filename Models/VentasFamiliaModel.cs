@@ -12,5 +12,6 @@ namespace marcatel_api.Models
         public decimal CostoDev {get; set;}
         public decimal VentaDev {get; set;}
         public string Familia {get; set;}
+        public string ClaveProveedor {get; set;}
     }
 }

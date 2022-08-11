@@ -111,6 +111,33 @@ namespace marcatel_api.Controllers
 
         }
 
+        [HttpGet("GetVentasProveedores")]
+        public JsonResult GetVentasProveedor(int sucursal, string f_inicial, string f_final)
+        {
+            var objectResponse = Helper.GetStructResponse();
+            try
+            {
+                var articulo = _adminService.GetVentasProveedor( f_inicial, f_final, sucursal);
+                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.success = true;
+                objectResponse.message = "data cargado con exito";
+
+                objectResponse.response = new
+                {
+                    data = articulo
+                };
+            }
+            catch (System.Exception ex)
+            {
+                Console.Write(ex.Message);
+                throw;
+            }
+
+
+            return new JsonResult(objectResponse);
+
+        }
+
         [HttpGet("GetVentasDeptoSucursal")]
         public JsonResult GetVentasDepartamentoSucursal(int sucursal, string f_inicial, string f_final)
         {
