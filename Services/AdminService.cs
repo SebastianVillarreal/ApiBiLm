@@ -234,6 +234,44 @@ namespace marcatel_api.Services
             }
             return lista;
         }
+
+        public List<VentasFamiliaModel> GetVentasProveedor( string fecha_inicial, string fecha_final, int sucursal)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+            
+            //filtros.FechaInicial = (filtros.FechaInicial == "") ? "0000-00-00" : filtros.FechaInicial;
+            //filtros.FechaFinal = (filtros.FechaFinal == "") ? "0000-00-00" : filtros.FechaFinal;
+            var lista = new List<VentasFamiliaModel>();
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = fecha_inicial });
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = fecha_final });
+            parametros.Add(new SqlParameter { ParameterName = "@pIdSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal });
+            try
+            {
+                DataSet ds = dac.Fill("GetVentasDepartamentoSucursal", parametros);
+                if(ds.Tables.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new VentasFamiliaModel
+                        {
+                            Nombre = dr["NombreDepto"].ToString(),
+                            Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
+                            Venta = decimal.Parse(dr["Venta"].ToString()),
+                            Costo = decimal.Parse(dr["Costo"].ToString()),
+                            ClaveDepartamento = dr["ClaveDepto"].ToString()
+                            
+
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return lista;
+        }
         
     }
     
