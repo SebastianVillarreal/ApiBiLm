@@ -14,4 +14,15 @@ namespace marcatel_api.Models
         public string Familia {get; set;}
         public string ClaveProveedor {get; set;}
     }
+
+    public class VentaFamiliaSucursalModel
+    {
+        public string Sucursal {get; set;}
+        public string Departamento {get; set;}
+        public string Familia {get; set;}
+        public decimal Venta {get; set;}
+        public decimal Costo {get; set;}
+        public decimal Cantidad {get; set;}
+        public string Tipo {get; set;}
+    }
 }

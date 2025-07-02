@@ -151,36 +151,33 @@ namespace marcatel_api.Services
             return lista;
         }
 
-        public List<VentasFamiliaModel> GetVentasFamiliaSucursal( string fecha_inicial, string fecha_final, int sucursal)
+        public List<VentaFamiliaSucursalModel> GetVentasFamiliaSucursal( string fecha_inicial, string fecha_final, int sucursal)
         {
             ArrayList parametros = new ArrayList();
             ConexionDataAccess dac = new ConexionDataAccess(connection);
             
             //filtros.FechaInicial = (filtros.FechaInicial == "") ? "0000-00-00" : filtros.FechaInicial;
             //filtros.FechaFinal = (filtros.FechaFinal == "") ? "0000-00-00" : filtros.FechaFinal;
-            var lista = new List<VentasFamiliaModel>();
+            var lista = new List<VentaFamiliaSucursalModel>();
             parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = fecha_inicial });
             parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = fecha_final });
-            parametros.Add(new SqlParameter { ParameterName = "@pSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal });
+            parametros.Add(new SqlParameter { ParameterName = "@pIdSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal });
             try
             {
-                DataSet ds = dac.Fill("GetVentasFamiliaSucursalFecha", parametros);
+                DataSet ds = dac.Fill("GetVentasFamilia", parametros);
                 if(ds.Tables.Count > 0)
                 {
                     foreach(DataRow dr in ds.Tables[0].Rows)
                     {
-                        lista.Add(new VentasFamiliaModel
+                        lista.Add(new VentaFamiliaSucursalModel
                         {
-                            Nombre = dr["Nombre"].ToString(),
                             Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
-                            Venta = decimal.Parse(dr["Venta"].ToString()),
-                            Costo = decimal.Parse(dr["Costo"].ToString()),
-                            Departamento = dr["NombreDepto"].ToString(),
-                            ClaveDepartamento = dr["ClaveDepto"].ToString(),
-                            CostoDev = decimal.Parse(dr["CostoDev"].ToString()),
-                            CantidadDev = decimal.Parse(dr["CantidadDev"].ToString()),
-                            VentaDev = decimal.Parse(dr["VentaDev"].ToString()),
-                            Familia = dr["Familia"].ToString()
+                            Venta = decimal.Parse(dr["totalVenta"].ToString()),
+                            Costo = decimal.Parse(dr["TotalCosto"].ToString()),
+                            Departamento = dr["Departamento"].ToString(),
+                            Familia = dr["Familia"].ToString(),
+                            Tipo = dr["Tipo"].ToString(),
+                            Sucursal = dr["nombresucursal"].ToString()
                             
                             
                             
