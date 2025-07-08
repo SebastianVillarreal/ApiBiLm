@@ -5,7 +5,17 @@
       "ProjectGuid": "b8eeea13-1fd5-430f-93e8-73c21e4d0640",
       "DisplayName": "pv-Api",
       "ColorIndex": 0
+    },
+    "2c9e4011-8e3b-4950-bc48-c1c969447204": {
+      "ProjectGuid": "2c9e4011-8e3b-4950-bc48-c1c969447204",
+      "DisplayName": "pv-Api",
+      "ColorIndex": 1
+    },
+    "7cbf5089-4f8c-4460-8b31-67e027501960": {
+      "ProjectGuid": "7cbf5089-4f8c-4460-8b31-67e027501960",
+      "DisplayName": "pv-Api",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }

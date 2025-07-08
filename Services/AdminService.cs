@@ -134,6 +134,10 @@ namespace marcatel_api.Services
                             IdSucursal = int.Parse(dr["IdSucursal"].ToString()),
                             TotalDinero = decimal.Parse(dr["TotalDinero"].ToString()),
                             TotalUnidades = decimal.Parse(dr["TotalUnidades"].ToString()),
+                            TotalCosto = decimal.Parse(dr["TotalCosto"].ToString()),
+                            Devolucion = decimal.Parse(dr["devolucionCantidad"].ToString()),
+                            DevolucionCosto = decimal.Parse(dr["DevCosto"].ToString()),
+                            DevolucionPrecio = decimal.Parse(dr["DevVenta"].ToString()),
                             
 
                         });
@@ -147,7 +151,124 @@ namespace marcatel_api.Services
             return lista;
         }
 
+        public List<VentaFamiliaSucursalModel> GetVentasFamiliaSucursal( string fecha_inicial, string fecha_final, int sucursal)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+            
+            //filtros.FechaInicial = (filtros.FechaInicial == "") ? "0000-00-00" : filtros.FechaInicial;
+            //filtros.FechaFinal = (filtros.FechaFinal == "") ? "0000-00-00" : filtros.FechaFinal;
+            var lista = new List<VentaFamiliaSucursalModel>();
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = fecha_inicial });
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = fecha_final });
+            parametros.Add(new SqlParameter { ParameterName = "@pIdSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal });
+            try
+            {
+                DataSet ds = dac.Fill("GetVentasFamilia", parametros);
+                if(ds.Tables.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new VentaFamiliaSucursalModel
+                        {
+                            Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
+                            Venta = decimal.Parse(dr["totalVenta"].ToString()),
+                            Costo = decimal.Parse(dr["TotalCosto"].ToString()),
+                            Departamento = dr["Departamento"].ToString(),
+                            Familia = dr["Familia"].ToString(),
+                            Tipo = dr["Tipo"].ToString(),
+                            Sucursal = dr["nombresucursal"].ToString()
+                            
+                            
+                            
 
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return lista;
+
+        }
+
+        public List<VentasFamiliaModel> GetVentasDepartamentoSucursal( string fecha_inicial, string fecha_final, int sucursal)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+            
+            //filtros.FechaInicial = (filtros.FechaInicial == "") ? "0000-00-00" : filtros.FechaInicial;
+            //filtros.FechaFinal = (filtros.FechaFinal == "") ? "0000-00-00" : filtros.FechaFinal;
+            var lista = new List<VentasFamiliaModel>();
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = fecha_inicial });
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = fecha_final });
+            parametros.Add(new SqlParameter { ParameterName = "@pIdSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal });
+            try
+            {
+                DataSet ds = dac.Fill("GetVentasDepartamentoSucursal", parametros);
+                if(ds.Tables.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new VentasFamiliaModel
+                        {
+                            Nombre = dr["NombreDepto"].ToString(),
+                            Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
+                            Venta = decimal.Parse(dr["Venta"].ToString()),
+                            Costo = decimal.Parse(dr["Costo"].ToString()),
+                            ClaveDepartamento = dr["ClaveDepto"].ToString()
+                            
+
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return lista;
+        }
+
+        public List<VentasFamiliaModel> GetVentasProveedor( string fecha_inicial, string fecha_final, int sucursal)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+            
+            //filtros.FechaInicial = (filtros.FechaInicial == "") ? "0000-00-00" : filtros.FechaInicial;
+            //filtros.FechaFinal = (filtros.FechaFinal == "") ? "0000-00-00" : filtros.FechaFinal;
+            var lista = new List<VentasFamiliaModel>();
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = fecha_inicial });
+            parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = fecha_final });
+            parametros.Add(new SqlParameter { ParameterName = "@pIdSucursal", SqlDbType = SqlDbType.VarChar, Value = sucursal });
+            try
+            {
+                DataSet ds = dac.Fill("GetVentasProveedorSucursal", parametros);
+                if(ds.Tables.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new VentasFamiliaModel
+                        {
+                            Nombre = dr["Nombre"].ToString(),
+                            Cantidad = decimal.Parse(dr["Cantidad"].ToString()),
+                            Venta = decimal.Parse(dr["total"].ToString()),
+                            //Costo = decimal.Parse(dr["Costo"].ToString()),
+                            ClaveProveedor = dr["ClaveProveedor"].ToString()
+                            
+
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return lista;
+        }
         
     }
     
